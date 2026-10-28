@@ -1,3 +1,5 @@
+const GROQ_API_KEY = "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";
+const API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 // Prompt del sistema adaptado al negocio de huevos
 const SYSTEM_INSTRUCTION = `
