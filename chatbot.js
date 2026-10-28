@@ -95,14 +95,14 @@ function appendMessage(text, sender) {
     const uniqueId = "msg-" + Date.now() + Math.floor(Math.random() * 1000);
     
     msgDiv.id = uniqueId;
-    msgDiv.classList.add("message", "p-3", "rounded-2xl", "max-w-[85%]", "text-sm", "leading-relaxed");
+    msgDiv.classList.add("message", "p-3", "rounded-2xl", "max-w-[85%]", "text-sm", "leading-relaxed", "shadow-sm");
     
     if (sender === "user") {
         // Estilo de burbuja del usuario (Rojo corporativo)
         msgDiv.classList.add("bg-red-600", "text-white", "self-end", "rounded-br-sm");
     } else {
-        // Estilo de burbuja del bot (Gris oscuro o tono neutro que contraste)
-        msgDiv.classList.add("bg-zinc-800", "text-slate-200", "self-start", "rounded-bl-sm");
+        // Estilo de burbuja del bot (Fondo blanco con borde gris claro)
+        msgDiv.classList.add("bg-white", "border", "border-stone-200", "text-stone-700", "self-start", "rounded-bl-sm");
     }
     
     msgDiv.textContent = text;
