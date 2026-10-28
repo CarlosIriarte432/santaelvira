@@ -1,5 +1,5 @@
 // Apunta a tu backend desplegado
-const API_URL = "https://tu-api-en-render.onrender.com/api/chat";
+const API_URL = "http://localhost:3000/api/chat";
 
 function toggleChat() {
     const chatWindow = document.getElementById("chat-window");
