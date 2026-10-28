@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avícola Santa Elvira | Tradición y Naturaleza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS CSS (Librería para animaciones al hacer scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            farm: '#064e3b',
+                            logoRed: '#b91c1c',
+                            logoYellow: '#eab308',
+                            light: '#f5f5f4',
+                            dark: '#1c1917',
+                            accent: '#fef3c7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .slider-container::before,
+        .slider-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        .slider-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+        }
+        .slider-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+        }
+        .slide-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 35s linear infinite;
+        }
+        .slide-track:hover {
+            animation-play-state: paused;
+        }
+        .slide-item {
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .slide-item img {
+            max-height: 80px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .slide-item img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark antialiased overflow-x-hidden">
+
+    <!-- Navegación Oculta al inicio (Aparece con JS) -->
+    <nav id="navbar" class="fixed w-full z-50 glass-panel border-b border-stone-200 transition-all duration-500 transform -translate-y-full opacity-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="src/logo.png" alt="Logo Avícola Santa Elvira" class="h-20 w-auto object-contain drop-shadow-sm cursor-pointer" onclick="window.scrollTo(0,0)">
+                </div>
+                <div class="hidden xl:flex space-x-6">
+                    <a href="#inicio" class="text-stone-600 hover:text-brand-logoRed transition font-medium">Inicio</a>
+                    <a href="#historia" class="text-stone-600 hover:text-brand-logoRed transition font-medium">Historia</a>
+                    <a href="#proposito" class="text-stone-600 hover:text-brand-logoRed transition font-medium">Propósito</a>
+                    <a href="#productos" class="text-stone-600 hover:text-brand-logoRed transition font-medium">Productos</a>
+                    <a href="#bienestar-calidad" class="text-stone-600 hover:text-brand-logoRed transition font-medium">Bienestar y Calidad</a>
+                    <a href="#sucursales" class="text-stone-600 hover:text-brand-logoRed transition font-medium">Sucursales</a>
+                </div>
+                <div class="hidden md:flex">
+                    <a href="#contacto" class="bg-brand-logoRed text-white px-6 py-2 rounded-full font-semibold hover:bg-red-800 transition shadow-md">
+                        Contacto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section (Pantalla Completa) -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1920&auto=format&fit=crop" alt="Granja natural y campos" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-stone-900/60"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto" data-aos="zoom-out" data-aos-duration="1200">
+            <span class="text-brand-logoYellow font-bold tracking-wider uppercase text-sm mb-4 block drop-shadow-md">Desde 1953</span>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                Tradición y Naturaleza en tu Mesa
+            </h1>
+            <p class="text-lg md:text-xl text-stone-100 mb-10 max-w-2xl mx-auto drop-shadow-md">
+                Más de 65 años brindando huevos de excelencia, cuidando nuestros procesos con la más alta tecnología para las familias chilenas.
+            </p>
+            <a href="#productos" class="bg-brand-logoRed text-white px-8 py-3 rounded-full font-bold hover:bg-red-800 transition shadow-lg inline-block hover:-translate-y-1 transform duration-300">
+                Ver Nuestros Productos
+            </a>
+        </div>
+        <!-- Indicador de scroll (opcional visualmente amigable) -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- 2. Historia -->
+    <section id="historia" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-farm mb-4">Nuestras Raíces</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">El viaje de la familia Silva Romero, desde un pequeño emprendimiento en Coquimbo hasta liderar el mercado del norte de Chile.</p>
+            </div>
+
+            <div class="relative">
+                <div class="hidden lg:block absolute top-6 left-0 w-full h-1 bg-stone-200 z-0" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="200"></div>
+                <div class="flex flex-col lg:flex-row justify-between relative z-10 gap-8 lg:gap-4">
+                    
+                    <div class="flex flex-col items-center text-center lg:w-1/5 px-2" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 z-10 transform transition hover:scale-110">
+                            <div class="w-5 h-5 bg-brand-logoRed rounded-full border-4 border-brand-logoYellow shadow-md"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-logoRed mb-1">1953</h3>
+                        <h4 class="text-md font-bold text-brand-dark mb-2">Nuestros Inicios</h4>
+                        <p class="text-stone-600 text-sm">En Coquimbo, Doña Norma Romero y Don Emilio Silva inician con 250 gallinas ponedoras.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center lg:w-1/5 px-2" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 z-10 transform transition hover:scale-110">
+                            <div class="w-5 h-5 bg-brand-logoRed rounded-full border-4 border-brand-logoYellow shadow-md"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-logoRed mb-1">1960</h3>
+                        <h4 class="text-md font-bold text-brand-dark mb-2">Los Primeros Años</h4>
+                        <p class="text-stone-600 text-sm">El criadero crece a 10.000 pollitas, posicionándose en Coquimbo y La Serena.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center lg:w-1/5 px-2" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 z-10 transform transition hover:scale-110">
+                            <div class="w-5 h-5 bg-brand-logoRed rounded-full border-4 border-brand-logoYellow shadow-md"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-logoRed mb-1">1969</h3>
+                        <h4 class="text-md font-bold text-brand-dark mb-2">Abriendo el Mercado</h4>
+                        <p class="text-stone-600 text-sm">Traslado a Punta Teatinos con 30.000 gallinas, abarcando la III y IV Región.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center lg:w-1/5 px-2" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 z-10 transform transition hover:scale-110">
+                            <div class="w-5 h-5 bg-brand-logoRed rounded-full border-4 border-brand-logoYellow shadow-md"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-logoRed mb-1">1996</h3>
+                        <h4 class="text-md font-bold text-brand-dark mb-2">Tecnología</h4>
+                        <p class="text-stone-600 text-sm">Con 200.000 pollitas, se invierte en automatización liderando desde Arica a Illapel.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center lg:w-1/5 px-2" data-aos="fade-up" data-aos-delay="500">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 z-10 transform transition hover:scale-110">
+                            <div class="w-5 h-5 bg-brand-logoRed rounded-full border-4 border-brand-logoYellow shadow-md"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-logoRed mb-1">2018</h3>
+                        <h4 class="text-md font-bold text-brand-dark mb-2">Actualidad</h4>
+                        <p class="text-stone-600 text-sm">Más de 850.000 pollitas, brindando un producto de primera calidad al norte del país.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Propósito -->
+    <section id="proposito" class="py-24 bg-brand-light overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-stone-100 hover:shadow-md transition" data-aos="fade-right">
+                    <div class="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-6 transform transition hover:rotate-6">
+                        <svg class="w-7 h-7 text-brand-logoRed" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">Nuestra Misión</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Somos una empresa productora de huevos orientada a brindar un producto de excelencia y de alto valor nutricional, a través de un servicio de distribución oportuno y confiable. Utilizar materias primas de primer nivel, innovar constantemente en tecnología y contar con un equipo seleccionado son la base para satisfacer las necesidades de nuestros clientes y seguir estando presente en la mesa de las familias chilenas.
+                    </p>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-stone-100 hover:shadow-md transition" data-aos="fade-left">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 transform transition hover:rotate-6">
+                        <svg class="w-7 h-7 text-brand-farm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">Nuestra Visión</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Nuestros esfuerzos se orientan en estar siempre a la vanguardia de la industria avícola, teniendo como objetivo cumplir las exigencias de un consumidor cada día más informado y consciente de la vida saludable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Productos -->
+    <section id="productos" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-brand-logoYellow font-semibold tracking-wider uppercase text-sm mb-2 block">Nuestro Catálogo</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Conoce Nuestros Formatos</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">Disponibles en presentaciones familiares y estuches premium, garantizando frescura desde Arica a Illapel.</p>
+            </div>
+
+            <h3 class="text-2xl font-bold text-brand-logoRed mb-8 border-b-2 border-stone-100 pb-2" data-aos="fade-right">Estuches de 6 y 12 Unidades</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <!-- Prods 1 a 6 con delay en cascada -->
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/6_unidades_grandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-white text-stone-700 border border-stone-200 text-xs font-bold rounded-full mb-2">6 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/6_unidades_extragrandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-white text-stone-700 border border-stone-200 text-xs font-bold rounded-full mb-2">6 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Extra Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center relative group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-3 right-3 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded z-10">Enriquecido en Omega 3</div>
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/6_gallinas_libres_omega3.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-white text-stone-700 border border-stone-200 text-xs font-bold rounded-full mb-2">6 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Gallinas Libres</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/12_unidades_grandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-white text-stone-700 border border-stone-200 text-xs font-bold rounded-full mb-2">12 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/12_unidades_extragrandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-white text-stone-700 border border-stone-200 text-xs font-bold rounded-full mb-2">12 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Extra Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center relative group" data-aos="fade-up" data-aos-delay="500">
+                    <div class="absolute top-3 right-3 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded z-10">Enriquecido en Omega 3</div>
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/12_gallinas_libres_omega3.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-white text-stone-700 border border-stone-200 text-xs font-bold rounded-full mb-2">12 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Gallinas Libres</h4>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-brand-logoRed mb-8 border-b-2 border-stone-100 pb-2" data-aos="fade-right">Packs de 20, 30 y 60 Unidades</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Prods 7 a 12 -->
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/pack_20_grandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-stone-200 text-stone-700 text-xs font-bold rounded-full mb-2">20 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/pack_20_extragrandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-stone-200 text-stone-700 text-xs font-bold rounded-full mb-2">20 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Extra Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/pack_30_medianos.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-stone-200 text-stone-700 text-xs font-bold rounded-full mb-2">30 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Medianos</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/pack_30_grandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-stone-200 text-stone-700 text-xs font-bold rounded-full mb-2">30 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/pack_30_extragrandes.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-stone-200 text-stone-700 text-xs font-bold rounded-full mb-2">30 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Extra Grandes</h4>
+                </div>
+                <div class="bg-brand-light rounded-2xl p-5 shadow-sm border border-stone-200 hover:shadow-lg transition text-center group" data-aos="fade-up" data-aos-delay="500">
+                    <div class="h-50 w-full bg-white rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        <img src="src/pack_60_medianos.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="inline-block px-3 py-1 bg-stone-200 text-stone-700 text-xs font-bold rounded-full mb-2">60 Unidades</span>
+                    <h4 class="font-bold text-brand-dark">Huevos Medianos</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Fusión: Bienestar y Calidad -->
+    <section id="bienestar-calidad" class="py-24 bg-brand-accent overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-brand-logoRed font-semibold tracking-wider uppercase text-sm mb-2 block">Nuestro Compromiso</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-farm mb-4">Bienestar Animal y Calidad Total</h2>
+                <p class="text-stone-700 max-w-2xl mx-auto">Creemos firmemente que el respeto por la naturaleza se refleja en la calidad. Un entorno libre de estrés para nuestras aves es la clave de nuestro sabor.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-brand-dark mb-6">Políticas de Calidad y Certificaciones</h3>
+                    <p class="text-stone-700 mb-6 leading-relaxed">
+                        Nos comprometemos a mantener, revisar y mejorar constantemente nuestros procesos, capacitando diariamente a nuestro equipo para brindar un producto <strong>¡Con la calidad de siempre!</strong>
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-stone-700 bg-white p-3 rounded-lg border border-stone-200 shadow-sm transition hover:shadow-md">
+                            <svg class="w-5 h-5 text-brand-farm mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Integral Santa Elvira
+                        </li>
+                        <li class="flex items-center text-stone-700 bg-white p-3 rounded-lg border border-stone-200 shadow-sm transition hover:shadow-md">
+                            <svg class="w-5 h-5 text-brand-farm mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Mejoramiento Tecnológico
+                        </li>
+                        <li class="flex items-center text-stone-700 bg-white p-3 rounded-lg border border-stone-200 shadow-sm transition hover:shadow-md">
+                            <svg class="w-5 h-5 text-brand-farm mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Cancha Compostaje de guano y Aves muertas
+                        </li>
+                    </ul>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white border border-stone-200 p-4 rounded-xl text-center flex flex-col items-center justify-center shadow-sm transform transition hover:-translate-y-1">
+                            <svg class="w-8 h-8 text-brand-logoYellow mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <h4 class="font-bold text-brand-dark text-sm">Norma ISO 9001:2015</h4>
+                            <p class="text-xs text-stone-500"></p>
+                            <img src="src/cert1.png" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+
+                        </div>
+                        <div class="bg-white border border-stone-200 p-4 rounded-xl text-center flex flex-col items-center justify-center shadow-sm transform transition hover:-translate-y-1">
+                            <svg class="w-8 h-8 text-brand-logoYellow mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <h4 class="font-bold text-brand-dark text-sm">Norma IFS Food</h4>
+                            <p class="text-xs text-stone-500"></p>
+                            <img src="src/cert2.png" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative h-full" data-aos="fade-left">
+                    <img src="src/gallinafeliz.jpeg" alt="Gallinas Libres y Felices" class="rounded-3xl shadow-xl object-cover h-full min-h-[400px] w-full">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-lg border border-stone-100 max-w-xs animate-pulse">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-stone-500 font-medium">Línea Gallinas Libres</p>
+                                <p class="text-brand-dark font-bold">100% Bienestar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Sucursales -->
+    <section id="sucursales" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="zoom-in">
+                <span class="text-brand-logoYellow font-semibold tracking-wider uppercase text-sm mb-2 block">Nuestra Presencia</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Red de Distribución</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">Encuentra nuestros productos a lo largo del norte del país.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-brand-light p-4 rounded-2xl border border-stone-200 hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="0">
+                    <h3 class="font-bold text-brand-dark text-lg mb-3 flex items-center">
+                        <svg class="w-5 h-5 text-brand-logoRed mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Arica y Parinacota
+                    </h3>
+                    <div class="w-full h-48 rounded-xl overflow-hidden bg-stone-300">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121774.2045952136!2d-70.36625860714157!3d-18.47355938817296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915aa9f1c7d23a63%3A0x6a0ed7db1277a06f!2sArica%2C%20Arica%20y%20Parinacota!5e0!3m2!1ses-419!2scl!4v1700000000000!5m2!1ses-419!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light p-4 rounded-2xl border border-stone-200 hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="100">
+                    <h3 class="font-bold text-brand-dark text-lg mb-3 flex items-center">
+                        <svg class="w-5 h-5 text-brand-logoRed mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Región de Tarapacá
+                    </h3>
+                    <div class="w-full h-48 rounded-xl overflow-hidden bg-stone-300">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120352.42777123985!2d-70.21528659556885!3d-20.245842858544837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91521404c0ec2e83%3A0x29158fb767a4e69d!2sIquique%2C%20Tarapac%C3%A1!5e0!3m2!1ses-419!2scl!4v1700000000000!5m2!1ses-419!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light p-4 rounded-2xl border border-stone-200 hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="200">
+                    <h3 class="font-bold text-brand-dark text-lg mb-3 flex items-center">
+                        <svg class="w-5 h-5 text-brand-logoRed mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Región de Antofagasta
+                    </h3>
+                    <div class="w-full h-48 rounded-xl overflow-hidden bg-stone-300">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115456.9189851601!2d-70.47271926210403!3d-23.633857502758414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96afd5064f20ec69%3A0x6b4478335e6704b1!2sAntofagasta!5e0!3m2!1ses-419!2scl!4v1700000000000!5m2!1ses-419!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light p-4 rounded-2xl border border-stone-200 hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="300">
+                    <h3 class="font-bold text-brand-dark text-lg mb-3 flex items-center">
+                        <svg class="w-5 h-5 text-brand-logoRed mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Región de Atacama
+                    </h3>
+                    <div class="w-full h-48 rounded-xl overflow-hidden bg-stone-300">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113066.0792186591!2d-70.41328003923485!3d-27.369720516766432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96980486c478c93b%3A0xc3faeb48b3afbe5f!2sCopiap%C3%B3%2C%20Atacama!5e0!3m2!1ses-419!2scl!4v1700000000000!5m2!1ses-419!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light p-4 rounded-2xl border border-stone-200 hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="400">
+                    <h3 class="font-bold text-brand-dark text-lg mb-3 flex items-center">
+                        <svg class="w-5 h-5 text-brand-logoRed mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Región de Coquimbo
+                    </h3>
+                    <div class="w-full h-48 rounded-xl overflow-hidden bg-stone-300">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109605.10091395565!2d-71.35338165651583!3d-29.963493721344485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9691ca2f7ad4c08b%3A0xc154376c99c585ea!2sCoquimbo!5e0!3m2!1ses-419!2scl!4v1700000000000!5m2!1ses-419!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Marcas (Slider) -->
+    <section id="encuentranos" class="py-16 bg-white border-y border-stone-100" data-aos="fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
+            <h3 class="text-3xl font-bold text-brand-dark">Encuéntranos también en</h3>
+        </div>
+        <div class="slider-container bg-white py-6">
+            <div class="slide-track">
+                <div class="slide-item"><img src="src/Logos/Aliservice_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Alvi_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Express_lider_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Jumbo_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Lider_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Mayorista11.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Santa_Isabel_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Soser_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Tottus_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Unimarc_logo.png" alt="Punto de venta"></div>
+                <!-- Loop -->
+                <div class="slide-item"><img src="src/Logos/Aliservice_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Alvi_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Express_lider_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Jumbo_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Lider_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Mayorista11.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Santa_Isabel_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Soser_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Tottus_logo.png" alt="Punto de venta"></div>
+                <div class="slide-item"><img src="src/Logos/Unimarc_logo.png" alt="Punto de venta"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Contacto -->
+    <section id="contacto" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-down">
+                <span class="text-brand-logoRed font-semibold tracking-wider uppercase text-sm mb-2 block">Hablemos</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Ponte en Contacto</h2>
+                <p class="text-stone-600">¿Tienes dudas sobre nuestros productos o quieres distribuir en tu negocio? Escríbenos.</p>
+            </div>
+            
+            <div class="bg-brand-light rounded-3xl p-8 md:p-12 shadow-sm border border-stone-200" data-aos="fade-up">
+                <form action="#" method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-stone-700 mb-2">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-logoRed focus:border-brand-logoRed outline-none transition bg-white" placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-stone-700 mb-2">Correo electrónico</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-logoRed focus:border-brand-logoRed outline-none transition bg-white" placeholder="ejemplo@correo.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="asunto" class="block text-sm font-medium text-stone-700 mb-2">Asunto</label>
+                        <input type="text" id="asunto" name="asunto" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-logoRed focus:border-brand-logoRed outline-none transition bg-white" placeholder="Motivo de tu consulta">
+                    </div>
+                    <div>
+                        <label for="mensaje" class="block text-sm font-medium text-stone-700 mb-2">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-logoRed focus:border-brand-logoRed outline-none transition bg-white resize-none" placeholder="Escribe tu mensaje aquí..."></textarea>
+                    </div>
+                    <div class="text-center pt-4">
+                        <button type="submit" class="bg-brand-logoRed text-white px-10 py-3 rounded-full font-bold hover:bg-red-800 transition shadow-lg w-full md:w-auto transform hover:scale-105">
+                            Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <img src="src/logo.png" alt="Logo Avícola Santa Elvira" class="h-16 w-auto mb-4 mx-auto md:mx-0 object-contain ">
+                <p class="text-sm mt-2">Tradición y calidad desde 1953.</p>
+            </div>
+            <div class="text-sm text-center md:text-right">
+                <p>&copy; 2026 Avícola Santa Elvira. Todos los derechos reservados.</p>
+                <p class="mt-1">Desarrollado por <span class="text-brand-logoYellow font-semibold">Zero Ping SpA</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS (Inicializador de las animaciones) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animaciones de scroll
+        AOS.init({
+            once: true, // La animación ocurre solo una vez al bajar
+            offset: 100, // Empieza a animarse 100px antes de aparecer en pantalla
+            duration: 800 // Duración promedio de las animaciones
+        });
+
+        // Script para el Navbar que aparece al hacer scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            // Si el scroll pasa de 100px (el usuario empezó a bajar)
+            if (window.scrollY > 100) {
+                navbar.classList.remove('-translate-y-full', 'opacity-0');
+                navbar.classList.add('translate-y-0', 'opacity-100');
+            } else {
+                navbar.classList.add('-translate-y-full', 'opacity-0');
+                navbar.classList.remove('translate-y-0', 'opacity-100');
+            }
+        });
+    </script>
+</body>
+</html>
