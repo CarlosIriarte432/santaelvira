@@ -1,0 +1,15 @@
+# Dependencias (No se suben porque pesan mucho y Render las instala solas)
+node_modules/
+
+# Archivos de entorno y variables secretas (CRÍTICO)
+.env
+.env.*
+
+# Logs de errores locales
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos basura del sistema operativo (Opcional)
+.DS_Store
+Thumbs.db
