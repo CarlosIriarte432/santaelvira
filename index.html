@@ -120,7 +120,11 @@
             <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1920&auto=format&fit=crop" alt="Granja natural y campos" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-stone-900/60"></div>
         </div>
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto" data-aos="zoom-out" data-aos-duration="1200">
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center" data-aos="zoom-out" data-aos-duration="1200">
+            
+            <!-- Logo principal difuminable -->
+            <img id="hero-logo" src="src/logo.png" alt="Logo Santa Elvira Hero" class="h-26 md:h-40 w-auto mb-8 object-contain drop-shadow-xl">
+            
             <span class="text-brand-logoYellow font-bold tracking-wider uppercase text-sm mb-4 block drop-shadow-md">Desde 1953</span>
             <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
                 Tradición y Naturaleza en tu Mesa
@@ -550,23 +554,34 @@
     <!-- AOS JS (Inicializador de las animaciones) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inicializar animaciones de scroll
+        // Inicializar animaciones de scroll de la librería AOS
         AOS.init({
-            once: true, // La animación ocurre solo una vez al bajar
-            offset: 100, // Empieza a animarse 100px antes de aparecer en pantalla
-            duration: 800 // Duración promedio de las animaciones
+            once: true,
+            offset: 100,
+            duration: 800
         });
 
-        // Script para el Navbar que aparece al hacer scroll
+        // Script combinado para el Navbar y el difuminado del Logo Hero
         const navbar = document.getElementById('navbar');
+        const heroLogo = document.getElementById('hero-logo');
+
         window.addEventListener('scroll', () => {
-            // Si el scroll pasa de 100px (el usuario empezó a bajar)
-            if (window.scrollY > 100) {
+            let scrollY = window.scrollY;
+
+            // 1. Lógica del Navbar
+            if (scrollY > 100) {
                 navbar.classList.remove('-translate-y-full', 'opacity-0');
                 navbar.classList.add('translate-y-0', 'opacity-100');
             } else {
                 navbar.classList.add('-translate-y-full', 'opacity-0');
                 navbar.classList.remove('translate-y-0', 'opacity-100');
+            }
+
+            // 2. Lógica del Hero Logo (Difuminado progresivo)
+            if (heroLogo) {
+                // Ajusta el '250' para hacer que desaparezca más rápido o más lento
+                let opacity = 1 - (scrollY / 250);
+                heroLogo.style.opacity = Math.max(opacity, 0); // Evita que la opacidad sea negativa
             }
         });
     </script>
