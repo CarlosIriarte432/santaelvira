@@ -1,5 +1,5 @@
-// Apunta a tu backend desplegado
-const API_URL = "http://localhost:3000/api/chat";
+// Apunta a tu backend desplegado en Render (Seguridad total, sin API keys expuestas)
+const API_URL = "https://santaelvira.onrender.com/api/chat";
 
 function toggleChat() {
     const chatWindow = document.getElementById("chat-window");
@@ -39,6 +39,7 @@ async function sendMessage() {
 
         if (response.ok && data.choices && data.choices[0].message.content) {
             let botReply = data.choices[0].message.content;
+            // Limpieza de formato markdown de la IA
             botReply = botReply.replaceAll('**', '').replaceAll('*', '');
             appendMessage(botReply, "bot");
         } else {
@@ -62,8 +63,10 @@ function appendMessage(text, sender) {
     msgDiv.classList.add("message", "p-3", "rounded-2xl", "max-w-[85%]", "text-sm", "leading-relaxed", "shadow-sm");
     
     if (sender === "user") {
+        // Estilo de burbuja del usuario (Rojo corporativo)
         msgDiv.classList.add("bg-red-600", "text-white", "self-end", "rounded-br-sm");
     } else {
+        // Estilo de burbuja del bot (Fondo blanco, diseño limpio)
         msgDiv.classList.add("bg-white", "border", "border-stone-200", "text-stone-700", "self-start", "rounded-bl-sm");
     }
     
