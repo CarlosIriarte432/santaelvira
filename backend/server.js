@@ -84,7 +84,7 @@ app.post('/api/contact', async (req, res) => {
     try {
         const data = await resend.emails.send({
             from: 'Web Santa Elvira <onboarding@resend.dev>', // Cambia esto cuando verifiques el dominio en Resend
-            to: ['ventas@santaelvira.cl'], // Reemplaza con el correo de destino de Santa Elvira o el de Zero Ping para pruebas
+            to: ['carlosiriarte432@hotmail.com'], // Reemplaza con el correo de destino de Santa Elvira o el de Zero Ping para pruebas
             subject: `Nuevo Mensaje Web: ${asunto}`,
             html: `
                 <h2>Nuevo contacto desde la Landing Page</h2>
