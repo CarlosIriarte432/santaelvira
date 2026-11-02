@@ -39,9 +39,18 @@ async function sendMessage() {
 
         if (response.ok && data.choices && data.choices[0].message.content) {
             let botReply = data.choices[0].message.content;
+            
             // Limpieza de formato markdown de la IA
             botReply = botReply.replaceAll('**', '').replaceAll('*', '');
             appendMessage(botReply, "bot");
+
+            // Evaluación de intención de contacto
+            const contactKeywords = ['whatsapp', 'contacto', 'formulario', 'pedido'];
+            const requiresContact = contactKeywords.some(keyword => botReply.toLowerCase().includes(keyword));
+
+            if (requiresContact) {
+                appendContactActions();
+            }
         } else {
             console.error("Error API:", data.error || data);
             appendMessage(`Ocurrió un error al procesar tu solicitud.`, "bot");
@@ -52,6 +61,36 @@ async function sendMessage() {
         if (loadingElem) loadingElem.remove();
         appendMessage("Error al conectar con el asistente.", "bot");
     }
+}
+
+function appendContactActions() {
+    const chatBox = document.getElementById("chatBox");
+    const actionsDiv = document.createElement("div");
+    
+    // Contenedor minimalista alineado al bot
+    actionsDiv.classList.add("flex", "gap-2", "mt-2", "mb-3", "self-start");
+
+    // Enlace a WhatsApp
+    const waBtn = document.createElement("a");
+    waBtn.href = "https://wa.me/56900000000"; // Reemplazar con el número real del cliente
+    waBtn.target = "_blank";
+    waBtn.classList.add("bg-green-600", "text-white", "text-xs", "font-bold", "px-4", "py-2", "rounded-lg", "shadow-sm", "hover:bg-green-700", "transition-colors");
+    waBtn.textContent = "WhatsApp";
+
+    // Botón de redirección al formulario
+    const formBtn = document.createElement("button");
+    formBtn.onclick = () => {
+        // Redirige al id="contacto" ya existente en tu index.html y oculta el chat
+        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+        toggleChat(); 
+    };
+    formBtn.classList.add("bg-red-600", "text-white", "text-xs", "font-bold", "px-4", "py-2", "rounded-lg", "shadow-sm", "hover:bg-red-700", "transition-colors");
+    formBtn.textContent = "Ir al Formulario";
+
+    actionsDiv.appendChild(waBtn);
+    actionsDiv.appendChild(formBtn);
+    chatBox.appendChild(actionsDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function appendMessage(text, sender) {
