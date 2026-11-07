@@ -552,16 +552,77 @@
     <!-- Cargar Chatbot Logic -->
     <script src="chatbot.js"></script>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-stone-400 py-12 border-t border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0 text-center md:text-left">
-                <img src="src/logo.png" alt="Logo Avícola Santa Elvira" class="h-16 w-auto mb-4 mx-auto md:mx-0 object-contain ">
-                <p class="text-sm mt-2">Tradición y calidad desde 1953.</p>
+<!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-16 pb-8 border-t-4 border-brand-logoRed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                
+                <!-- Columna 1: Logo y descripción -->
+                <div class="flex flex-col items-start">
+                    <div class="bg-white/0 px-4 py-3 rounded-xl mb-6 inline-block shadow-md">
+                        <img src="src/logo.png" alt="Logo Avícola Santa Elvira" class="h-24 w-auto object-contain">
+                    </div>
+                    <p class="text-stone-400 text-sm leading-relaxed">
+                        Más de 65 años brindando huevos de excelencia, cuidando nuestros procesos con la más alta tecnología. Tradición y naturaleza en las mesas de las familias chilenas.
+                    </p>
+                </div>
+
+                <!-- Columna 2: Navegación -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-6 uppercase tracking-wider border-b border-stone-700 pb-2">Secciones</h4>
+                    <ul class="space-y-3 text-sm text-stone-400">
+                        <li><a href="#inicio" class="hover:text-brand-logoYellow transition-colors flex items-center gap-2"><span>›</span> <span>Inicio</span></a></li>
+                        <li><a href="#historia" class="hover:text-brand-logoYellow transition-colors flex items-center gap-2"><span>›</span> <span>Nuestras Raíces</span></a></li>
+                        <li><a href="#proposito" class="hover:text-brand-logoYellow transition-colors flex items-center gap-2"><span>›</span> <span>Propósito</span></a></li>
+                        <li><a href="#bienestar-calidad" class="hover:text-brand-logoYellow transition-colors flex items-center gap-2"><span>›</span> <span>Bienestar y Calidad</span></a></li>
+                        <li><a href="#productos" class="hover:text-brand-logoYellow transition-colors flex items-center gap-2"><span>›</span> <span>Catálogo</span></a></li>
+                        <li><a href="#sucursales" class="hover:text-brand-logoYellow transition-colors flex items-center gap-2"><span>›</span> <span>Sucursales</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Contacto -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-6 uppercase tracking-wider border-b border-stone-700 pb-2">Contacto</h4>
+                    <ul class="space-y-4 text-sm text-stone-400">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-logoYellow shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Cobertura garantizada desde<br>Arica a Illapel</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand-logoYellow shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <a href="mailto:ventas@santaelvira.cl" class="hover:text-white transition-colors">ventas@santaelvira.cl</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="text-sm text-center md:text-right">
-                <p>&copy; 2026 Avícola Santa Elvira. Todos los derechos reservados.</p>
-                <p class="mt-1">Desarrollado por <span class="text-brand-logoYellow font-semibold">Zero Ping SpA</span></p>
+
+            <!-- Bottom: Copyright, Políticas y Firma -->
+            <div class="border-t border-stone-800 pt-8 flex flex-col lg:flex-row justify-between items-center gap-6">
+                
+                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+                    <p class="text-sm text-stone-500 text-center sm:text-left">
+                        &copy; 2026 Avícola Santa Elvira. Todos los derechos reservados.
+                    </p>
+                    
+                    <!-- ENLACES LEGALES (apuntando a frontend/) -->
+                    <div class="flex items-center gap-4 text-sm text-stone-500">
+                        <a href="./frontend/politica-privacidad.html" class="hover:text-brand-logoYellow transition-colors">Política de Privacidad</a>
+                        <span class="text-stone-700">|</span>
+                        <a href="./frontend/politica-proteccion-datos.html" class="hover:text-brand-logoYellow transition-colors">Protección de Datos</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <!-- Firma Zero Ping -->
+                    <div class="text-sm text-stone-500 flex items-center gap-2 group cursor-default">
+                        <span>Desarrollado por</span> 
+                        <span class="font-bold text-stone-300 group-hover:text-white transition-colors">Zero Ping</span>
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-logoRed opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-logoRed"></span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -570,146 +631,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Lógica de toda la página -->
-    <script>
-        // 1. Iniciar Animaciones
-        AOS.init({ once: true, offset: 100, duration: 800 });
-
-        // 2. Comportamiento del Navbar y Logo
-        const navbar = document.getElementById('navbar');
-        const heroLogo = document.getElementById('hero-logo');
-
-        window.addEventListener('scroll', () => {
-            let scrollY = window.scrollY;
-            if (scrollY > 100) {
-                navbar.classList.remove('-translate-y-full', 'opacity-0');
-                navbar.classList.add('translate-y-0', 'opacity-100');
-            } else {
-                navbar.classList.add('-translate-y-full', 'opacity-0');
-                navbar.classList.remove('translate-y-0', 'opacity-100');
-            }
-            if (heroLogo) {
-                let opacity = 1 - (scrollY / 250);
-                heroLogo.style.opacity = Math.max(opacity, 0);
-            }
-        });
-
-        // 3. Slider Híbrido Infinito
-        const sliderMarcas = document.getElementById('brands-slider');
-        let isDown = false;
-        let startX;
-        let scrollLeftPos;
-        let animationId;
-        const autoScrollSpeed = 1;
-
-        function startAutoScroll() {
-            if (!isDown) {
-                sliderMarcas.scrollLeft += autoScrollSpeed;
-                checkLoop();
-            }
-            animationId = requestAnimationFrame(startAutoScroll);
-        }
-
-        function checkLoop() {
-            if (sliderMarcas.scrollLeft >= sliderMarcas.scrollWidth / 2) {
-                sliderMarcas.scrollLeft -= sliderMarcas.scrollWidth / 2;
-            } else if (sliderMarcas.scrollLeft <= 0) {
-                sliderMarcas.scrollLeft += sliderMarcas.scrollWidth / 2;
-            }
-        }
-
-        sliderMarcas.addEventListener('mousedown', (e) => {
-            isDown = true;
-            sliderMarcas.classList.add('active');
-            startX = e.pageX - sliderMarcas.offsetLeft;
-            scrollLeftPos = sliderMarcas.scrollLeft;
-            cancelAnimationFrame(animationId);
-        });
-
-        sliderMarcas.addEventListener('mouseleave', () => {
-            if (!isDown) return;
-            isDown = false;
-            sliderMarcas.classList.remove('active');
-            startAutoScroll();
-        });
-
-        sliderMarcas.addEventListener('mouseup', () => {
-            isDown = false;
-            sliderMarcas.classList.remove('active');
-            startAutoScroll();
-        });
-
-        sliderMarcas.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - sliderMarcas.offsetLeft;
-            const walk = (x - startX) * 2;
-            sliderMarcas.scrollLeft = scrollLeftPos - walk;
-            checkLoop();
-        });
-
-        sliderMarcas.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - sliderMarcas.offsetLeft;
-            scrollLeftPos = sliderMarcas.scrollLeft;
-            cancelAnimationFrame(animationId);
-        }, {passive: true});
-
-        sliderMarcas.addEventListener('touchend', () => {
-            isDown = false;
-            startAutoScroll();
-        });
-
-        sliderMarcas.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            const x = e.touches[0].pageX - sliderMarcas.offsetLeft;
-            const walk = (x - startX) * 2;
-            sliderMarcas.scrollLeft = scrollLeftPos - walk;
-            checkLoop();
-        }, {passive: true});
-
-        startAutoScroll();
-
-        // 4. Formulario de Contacto (Apunta a la API de Render)
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const btn = document.getElementById('submitBtn');
-            const statusDiv = document.getElementById('formStatus');
-            btn.textContent = 'Enviando...';
-            btn.disabled = true;
-
-            const formData = {
-                nombre: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                asunto: document.getElementById('asunto').value,
-                mensaje: document.getElementById('mensaje').value
-            };
-
-            try {
-                // Aquí se envía al backend desplegado para usar Resend"
-                const response = await fetch('https://santaelvira.onrender.com/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    statusDiv.textContent = '¡Mensaje enviado con éxito! Te contactaremos pronto.';
-                    statusDiv.className = 'text-center text-sm font-bold p-3 rounded-lg bg-green-100 text-green-800 mt-4 block';
-                    document.getElementById('contactForm').reset();
-                } else {
-                    throw new Error('Error en el servidor');
-                }
-            } catch (error) {
-                statusDiv.textContent = 'Hubo un error al enviar el mensaje. Intenta nuevamente.';
-                statusDiv.className = 'text-center text-sm font-bold p-3 rounded-lg bg-red-100 text-red-800 mt-4 block';
-            } finally {
-                btn.textContent = 'Enviar Mensaje';
-                btn.disabled = false;
-            }
-        });
-    </script>
+    <script src="./frontend/js/main.js" ></script>
 </body>
 </html>
