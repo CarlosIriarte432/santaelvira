@@ -45,7 +45,7 @@ Presentaciones de 30 Unidades (Cajas/Cartones):
 Presentaciones de 60 unidades:
 60 Unidades - Huevos Medianos
 
-SUCURSALES Y PRESENCIA:
+SUCURSALES Y PRESENCIA EN CHILE:
 Contamos con sucursales en: Arica, Iquique, Calama, Antofagasta, Chañaral, La Serena y Ovalle.
 
 DESPACHOS Y ATENCIÓN:
