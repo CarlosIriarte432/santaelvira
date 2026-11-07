@@ -68,17 +68,8 @@ function appendContactActions() {
     const chatBox = document.getElementById("chatBox");
     const actionsDiv = document.createElement("div");
     
-    // Contenedor minimalista alineado al bot con flex-wrap por si la pantalla es muy pequeña
-    actionsDiv.classList.add("flex", "gap-2", "mt-2", "mb-3", "self-start", "flex-wrap");
-
-    // Botón de redirección a Productos
-    const prodBtn = document.createElement("button");
-    prodBtn.onclick = () => {
-        document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
-        toggleChat(); 
-    };
-    prodBtn.classList.add("bg-amber-400", "text-red-950", "text-xs", "font-bold", "px-4", "py-2", "rounded-lg", "shadow-sm", "hover:bg-amber-500", "transition-colors");
-    prodBtn.textContent = "Ver Productos";
+    // Contenedor minimalista alineado al bot
+    actionsDiv.classList.add("flex", "gap-2", "mt-2", "mb-3", "self-start");
 
     // Botón de redirección al formulario
     const formBtn = document.createElement("button");
@@ -89,7 +80,6 @@ function appendContactActions() {
     formBtn.classList.add("bg-red-600", "text-white", "text-xs", "font-bold", "px-4", "py-2", "rounded-lg", "shadow-sm", "hover:bg-red-700", "transition-colors");
     formBtn.textContent = "Ir a Contacto";
 
-    actionsDiv.appendChild(prodBtn);
     actionsDiv.appendChild(formBtn);
     chatBox.appendChild(actionsDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
